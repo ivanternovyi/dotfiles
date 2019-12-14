@@ -1,0 +1,4 @@
+#!/bin/bash
+
+cat ~/.ssh/id_rsa.pub | pbcopy 
+echo "SSH key is copied"

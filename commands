@@ -1,0 +1,11 @@
+pg_ctl -D /usr/local/var/postgres status   <- postgress status
+
+cat ~/.ssh/id_rsa.pub | pbcopy <- bcopy copies to clipboard
+
+# create symlink
+mv ~/.bashrc ~/code/dotfiles/.bashrc
+ln -s ~/code/dotfiles/.bashrc ~/
+
+stty -a <- terminal config
+
+cp my_script /usr/local/bin
