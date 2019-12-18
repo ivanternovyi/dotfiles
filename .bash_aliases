@@ -19,6 +19,7 @@ alias grl='git reflog'
 alias gs='git status'
 alias ga='git add'
 alias gb='git branch'
+alias gtree='git log --all --graph --decorate --oneline --simplify-by-decoration'
 
 # some rails aliases
 alias r='rails'
