@@ -2,7 +2,7 @@
 [[ -s "$HOME/.profile" ]] && source "$HOME/.profile"
 
 # Make custom shell scripts executable everywhere
-export PATH="$PATH:$HOME/code/dotfiles/scripts"
+export PATH="$PATH:$HOME/code/dotfiles/bin"
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
 # Add imagemagick to $PATH
