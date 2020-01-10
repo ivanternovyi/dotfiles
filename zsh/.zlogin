@@ -1,0 +1,1 @@
+#  sourced on the start of a login shel
