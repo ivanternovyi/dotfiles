@@ -1,0 +1,60 @@
+#!/bin/bash
+
+# Script to move specific dotfiles to particular folder and create symlinks for them
+
+# run `chmod 700 'filename'` if any permission issues
+
+# Define working directory
+WORK_DIR="code/dotfiles"
+
+separator() {
+    echo "--------------------------------"
+}
+
+mkdir -p ~/"$WORK_DIR/bash"
+mkdir -p ~/"$WORK_DIR/git"
+mkdir -p ~/"$WORK_DIR/zsh"
+mkdir -p ~/"$WORK_DIR/shared"
+
+# List of files
+declare -a dotfilesArr=(
+  ".bashrc"
+  ".bash_profile"
+  ".gitconfig"
+  ".aliases"
+  ".profile"
+  ".zlogin"
+  ".zshenv"
+  ".zshrc"
+)
+
+# get length of an array
+dotfilesArrLength=${#dotfilesArr[@]}
+
+for (( i=1; i<${dotfilesArrLength}+1; i++ ));
+do
+  filename=${dotfilesArr[$i-1]}
+
+  if [[ $filename =~ "bash" ]];
+  then
+    dir="$WORK_DIR/bash"
+  elif [[ $filename =~ "git" ]];
+  then
+    dir="$WORK_DIR/git"
+  elif [[ $filename =~ "zsh" ]] || [[ $filename =~ "zlogin" ]];
+  then
+    dir="$WORK_DIR/zsh"
+  else
+    dir="$WORK_DIR/shared"
+  fi
+
+  # move existing dotfiles to $WORK_DIR
+  mv ~/"$filename" ~/"$dir/$filename"
+  echo "$filename" " moved to " "$dir/$filename"
+
+  # create symlinks
+  ln -s ~/"$dir/$filename" ~/
+  echo "Created symlink " "$filename" " --> $dir/$filename"
+
+  separator
+done
