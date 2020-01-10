@@ -16,16 +16,10 @@ export NVM_DIR="$HOME/.nvm"
 # This loads AVN
 [[ -s "$HOME/.avn/bin/avn.sh" ]] && source "$HOME/.avn/bin/avn.sh"
 
-# This loads nvm bash_completion
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
-
-# This loads bash_completion
-[[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
-
 # Load RVM into a shell session *as a function*
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
 # Load file with aliases
-if [ -r ~/.bash_aliases ]; then
-   source ~/.bash_aliases
+if [ -r ~/.aliases ]; then
+   source ~/.aliases
 fi
