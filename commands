@@ -9,3 +9,5 @@ ln -s ~/code/dotfiles/.bashrc ~/
 stty -a <- terminal config
 
 cp my_script /usr/local/bin
+
+chsh -s /bin/zsh # change default shell

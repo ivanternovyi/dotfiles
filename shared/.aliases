@@ -1,10 +1,16 @@
 # Aliases are defined here
 
 # some ls aliases
+alias ls='ls -GwF'
 alias ll='ls -alF'
 alias la='ls -A'
 alias lah='ls -lah'
 alias l='ls -CF'
+
+# general aliases
+alias zshrc='code ~/.zshrc'
+alias bashrc='code ~/.bashrc'
+alias gitconfig='code ~/.gitconfig'
 
 # some git aliases
 alias gcm='git checkout master'
