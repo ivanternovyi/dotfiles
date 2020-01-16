@@ -11,3 +11,6 @@ stty -a <- terminal config
 cp my_script /usr/local/bin
 
 chsh -s /bin/zsh # change default shell
+
+# ZSH git completion
+https://medium.com/@oliverspryn/adding-git-completion-to-zsh-60f3b0e7ffbc
