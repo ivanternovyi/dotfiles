@@ -1,0 +1,46 @@
+#!/bin/bash
+
+if [[ $1 == '-h' || $1 == '--help' ]]; then
+  echo "USAGE: archive_files [DIRECTORY] [FORMAT]"
+  echo "Script to archive files under given directory and its subdirectories with given file FORMAT"
+  exit 0
+fi
+
+DEFAULT_ARGUMENTS_COUNT=2;
+
+if [ "$#" -ne $DEFAULT_ARGUMENTS_COUNT ]; then
+  echo "Illegal number of parameters; Expected $DEFAULT_ARGUMENTS_COUNT, but given $#"
+  exit 1
+fi
+
+if [ ! -d $1 ]; then
+  echo "First parameter must be a valid directory"
+  exit 1
+fi
+
+ARCHIVE_FILE_NAME="my_archive.tar"
+EXTRACTED_FOLDER_NAME="extracted"
+filePathsArr=(`find $1 -name "*$2" | sed "s_^$1/__"`)
+
+if [ ${#filePathsArr[@]} == 0 ]; then
+  echo 'No files found...'
+  exit 0
+fi
+
+echo 'Archiving...'
+
+cd $1
+
+tar -cvf $ARCHIVE_FILE_NAME ${filePathsArr[@]}
+
+gzip $ARCHIVE_FILE_NAME
+
+echo 'Successfully archived'
+
+echo 'Extracting...'
+
+mkdir $EXTRACTED_FOLDER_NAME
+
+tar -xvf "$ARCHIVE_FILE_NAME.gz" -C $EXTRACTED_FOLDER_NAME
+
+echo 'Done!'
