@@ -1,0 +1,43 @@
+#!/bin/bash
+
+if [[ $1 == '-h' || $1 == '--help' ]]; then
+  echo "USAGE: remove_subdirs [DIRECTORY] [PATTERN]"
+  echo "Script to remove subdirectories from given DIRECTORY with given PATTERN"
+  exit 0
+fi
+
+DEFAULT_ARGUMENTS_COUNT=2;
+
+if [ "$#" -ne $DEFAULT_ARGUMENTS_COUNT ]; then
+  echo "Illegal number of parameters; Expected $DEFAULT_ARGUMENTS_COUNT, but given $#"
+  exit 1
+fi
+
+if [ ! -d $1 ]; then
+  echo "First parameter must be a valid directory"
+  exit 1
+fi
+
+# Array with subdirectories that match PATTERN
+subdirsArr=(`find $1 -type d -name $2`)
+
+if [ ${#subdirsArr[@]} == 0 ]; then
+  echo 'No subdirectories found...'
+  exit 0
+else
+  echo "Subdirectories: ${subdirsArr[@]}"
+fi
+
+dirSizesArr=(`du -sh ${subdirsArr[@]} | awk '{print $1;}' `)
+
+printf -v joined '%s + ' "${dirSizesArr[@]}"
+echo "TOTAL SIZE: ${joined%,}" | sed "s/ + $//g"
+
+echo "Removing folders..."
+
+for (( i=0; i<${#subdirsArr[@]}; i++ ));
+do
+  rm -rf "${subdirsArr[$i]}"
+done
+
+echo 'Done!'
