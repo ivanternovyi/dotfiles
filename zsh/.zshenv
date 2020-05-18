@@ -8,3 +8,5 @@ export PATH="$PATH:$HOME/.rvm/bin"
 export PATH="/usr/local/opt/imagemagick@6/bin:$PATH"
 # nvm directory
 export NVM_DIR="$HOME/.nvm"
+# define locale
+export LC_ALL="en_US"
