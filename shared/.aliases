@@ -37,3 +37,6 @@ alias rc='rails c'
 alias rg='rails g'
 alias frs='foreman run rails s -p 5000'
 alias frc='foreman run rails c'
+
+# other aliases
+alias h='htop'
